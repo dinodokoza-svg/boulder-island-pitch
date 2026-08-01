@@ -1983,7 +1983,23 @@ window.__reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
   window.__motion = 1;
   applyMotion();
 
-  if(!/[?&]tweak=1(&|$)/.test(location.search)) return;   // owners never get here
+  /* The panel opens when the URL carries ?tweak=1 (or #tweak), and there is a
+     keyboard escape hatch — Shift+T — for previews that drop the query string.
+     Owners who never do either will never see it. */
+  var wanted = /[?&]tweak=1(&|$)/.test(location.search) || /^#?tweak$/.test(location.hash);
+  var built = false;
+  function boot(){ if(built) return; built = true; make(); window.__twSetOpen(true); }
+  if(!wanted){
+    document.addEventListener('keydown', function(e){
+      var t = e.target, tag = t && t.tagName;
+      if(tag === 'INPUT' || tag === 'TEXTAREA' || (t && t.isContentEditable)) return;
+      if(e.shiftKey && (e.key === 'T' || e.key === 't')){ e.preventDefault(); boot(); }
+    });
+    return;
+  }
+  make();
+
+  function make(){
 
   var fab = document.createElement('button');
   fab.id = 'tweak-fab'; fab.type = 'button';
@@ -2077,6 +2093,7 @@ window.__reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
     applyAll();
   });
 
+  window.__twSetOpen = setOpen;
   function setOpen(open){
     panel.classList.toggle('is-open', open);
     fab.setAttribute('aria-expanded', String(open));
@@ -2087,6 +2104,7 @@ window.__reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").ma
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && panel.classList.contains('is-open')){ setOpen(false); fab.focus(); }
   });
+  }   /* end make() */
 })();
 
 </script>
