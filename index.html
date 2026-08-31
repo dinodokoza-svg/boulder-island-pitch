@@ -838,6 +838,119 @@ footer{
   .tap:hover,.tap:active{transform:none;}
   .rung.now{transform:none;}
 }
+/* ════════════════════════════════════════════════════════════════════════
+   AUSTRIA ASSIGNMENTS — JANUARY 2026
+   Self-contained block, added below the six Friday areas.
+   It changes nothing above it: no existing selector is redefined,
+   every class here is prefixed .aa-. Cream ground (inherited from body),
+   Baloo 2 (inherited), and only coral / ink / clay from the identity.
+   No animation, no transition, no JavaScript.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── scoreboard: six large numbers ────────────────────────── */
+.aa-score{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px;
+  margin-bottom:26px;
+}
+.aa-stat{
+  background:var(--card);
+  border:2px solid var(--line-strong);
+  border-radius:var(--r);
+  padding:18px 16px 16px;
+  box-shadow:var(--shadow-sm);
+  min-width:0;
+}
+.aa-stat .n{
+  display:block;
+  font-size:2.9rem;font-weight:800;line-height:1;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+.aa-stat .l{
+  display:block;margin-top:8px;
+  font-size:.82rem;font-weight:700;line-height:1.3;letter-spacing:.02em;
+  color:var(--clay);
+  overflow-wrap:break-word;
+}
+.aa-stat.is-delivered .n{ color:var(--coral-text); }
+.aa-stat.is-progress  .n{ color:var(--ink); }
+.aa-stat.is-other     .n{ color:var(--clay); }
+
+/* ── the eleven cards ───────────────────────────────── */
+.aa-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));
+  gap:16px;
+}
+.aa-card{
+  background:var(--card);
+  border:2px solid var(--line-strong);
+  border-radius:var(--r);
+  padding:16px 16px 14px;
+  box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;gap:10px;
+  min-width:0;
+}
+.aa-top{ display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
+.aa-n{
+  flex:0 0 auto;
+  font-size:1.05rem;font-weight:800;line-height:1;letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;
+  color:var(--clay);
+}
+.aa-badge{
+  display:inline-block;
+  border-radius:999px;
+  padding:5px 11px;
+  font-size:.68rem;font-weight:800;letter-spacing:.09em;line-height:1.25;
+  max-width:100%;
+}
+/* the only three badge fills — nothing outside the identity palette */
+.aa-badge.b-coral{ background:#EF7556; color:var(--ink);   }  /* delivered    */
+.aa-badge.b-ink  { background:#2B2A28; color:var(--cream); }  /* in progress  */
+.aa-badge.b-clay { background:#6E675B; color:var(--cream); }  /* everything else */
+
+.aa-card h3{
+  font-size:1.02rem;font-weight:800;line-height:1.22;letter-spacing:-.005em;
+  overflow-wrap:break-word;
+}
+.aa-card p{
+  font-size:.87rem;font-weight:500;line-height:1.5;
+  color:var(--clay);
+  overflow-wrap:break-word;
+}
+
+/* ── PHOTO SLOT ───────────────────────────────────────
+   Every card ends with an empty .aa-photo box. The space is already
+   reserved at 16:10, so dropping a photo in later changes nothing about
+   the layout — the picture simply fills the box that is already there.
+   To fill one, put an <img> inside that card's slot:
+       <div class="aa-photo"><img src="..." alt="..."></div>
+   If you would rather hide the slots that are still empty, uncomment
+   the one rule below — note that the cards will then change height
+   as photos arrive.
+       .aa-photo:empty{ display:none; }
+   ────────────────────────────────────────────────── */
+.aa-photo{
+  margin-top:auto;
+  width:100%;
+  aspect-ratio:16 / 10;
+  background:var(--surface);
+  border-radius:var(--r-sm);
+  overflow:hidden;
+}
+.aa-photo img{ width:100%;height:100%;object-fit:cover;display:block; }
+
+@media (max-width:600px){
+  .aa-score{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .aa-stat{ padding:14px 13px 12px; }
+  .aa-stat .n{ font-size:2.2rem; }
+  .aa-stat .l{ font-size:.75rem; }
+  .aa-cards{ gap:12px; }
+}
+
 </style>
 </head>
 <body>
@@ -912,6 +1025,207 @@ footer{
       <nav class="rail" id="rail" aria-label="Jump to an area"></nav>
 
       <div class="areas" id="areas"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ AUSTRIA ASSIGNMENTS — JANUARY 2026 ══════════════════
+       Static HTML. This section is deliberately NOT driven by the DASHBOARD
+       data block above — that object still belongs to the weekly Friday
+       update template and is untouched. No script, no animation.
+       To edit an item, edit the card below directly.
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="austria-section">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">The measuring stick</span>
+        <h2>Austria assignments — January 2026</h2>
+        <p>Eleven tasks handed over at the workation in Austria. These are the items the quarterly checkpoint on 25.09.2026 walks through.</p>
+      </div>
+
+      <!-- scoreboard — six numbers, as handed over -->
+      <div class="aa-score">
+        <div class="aa-stat is-delivered">
+          <span class="n">2</span>
+          <span class="l">Delivered</span>
+        </div>
+        <div class="aa-stat is-progress">
+          <span class="n">4</span>
+          <span class="l">In progress</span>
+        </div>
+        <div class="aa-stat is-other">
+          <span class="n">2</span>
+          <span class="l">Solved differently</span>
+        </div>
+        <div class="aa-stat is-other">
+          <span class="n">1</span>
+          <span class="l">Waiting</span>
+        </div>
+        <div class="aa-stat is-other">
+          <span class="n">1</span>
+          <span class="l">Parked</span>
+        </div>
+        <div class="aa-stat is-other">
+          <span class="n">2</span>
+          <span class="l">Not started</span>
+        </div>
+      </div>
+
+      <!-- the eleven items -->
+      <ol class="aa-cards">
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">01</span>
+            <span class="aa-badge b-clay">SOLVED DIFFERENTLY</span>
+          </div>
+          <h3>Children's area windows</h3>
+          <p>Insulation impossible before building works. Heater installed by the parents' seating instead; sign to follow.</p>
+
+          <!-- PHOTO SLOT — item 1. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">02</span>
+            <span class="aa-badge b-clay">WAITING</span>
+          </div>
+          <h3>Routesetting course</h3>
+          <p>State funding needs AZAV certification, heavier than assumed. New path: a sport-education student on placement.</p>
+
+          <!-- PHOTO SLOT — item 2. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">03</span>
+            <span class="aa-badge b-clay">NOT STARTED</span>
+          </div>
+          <h3>Morning climbing-fitness courses</h3>
+          <p>Plan expanded: take over the whole course area, three age tracks, one trainer, written training plans.</p>
+
+          <!-- PHOTO SLOT — item 3. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">04</span>
+            <span class="aa-badge b-clay">SOLVED DIFFERENTLY</span>
+          </div>
+          <h3>Merchandise</h3>
+          <p>Own import dropped on liability and testing costs. New model: consignment with a small European brand plus two partner days a year.</p>
+
+          <!-- PHOTO SLOT — item 4. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">05</span>
+            <span class="aa-badge b-coral">DELIVERED</span>
+          </div>
+          <h3>Corporate identity guideline</h3>
+          <p>27-sign system designed and installed. Coral, cream, ink, Baloo 2, sector naming.</p>
+
+          <!-- PHOTO SLOT — item 5. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">06</span>
+            <span class="aa-badge b-ink">IN PROGRESS</span>
+          </div>
+          <h3>Plakate and spider web</h3>
+          <p>Wayfinding concept complete: one mother Plakat at the entrance, child Plakate leading through the gym.</p>
+
+          <!-- PHOTO SLOT — item 6. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">07</span>
+            <span class="aa-badge b-clay">NOT STARTED</span>
+          </div>
+          <h3>Presentation of our products</h3>
+          <p>Held back on purpose until the course offer under item 3 settles.</p>
+
+          <!-- PHOTO SLOT — item 7. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">08</span>
+            <span class="aa-badge b-ink">IN PROGRESS</span>
+          </div>
+          <h3>Plakat placement per customer group</h3>
+          <p>Seven-station journey mapped: entrance, changing, warm-up, beginner wall, Muscle Island, bistro, closing.</p>
+
+          <!-- PHOTO SLOT — item 8. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">09</span>
+            <span class="aa-badge b-clay">NOT STARTED</span>
+          </div>
+          <h3>Promoting what we already have</h3>
+          <p>The problem is the hidden campus: outdoor area, children's house, spray wall and training gym are invisible in winter.</p>
+
+          <!-- PHOTO SLOT — item 9. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">10</span>
+            <span class="aa-badge b-clay">PARKED WITH A PLAN</span>
+          </div>
+          <h3>Slab of the Week</h3>
+          <p>Blocker was extra setting labour. Fix: one fixed sector, one setter, one fixed day inside the existing rotation.</p>
+
+          <!-- PHOTO SLOT — item 10. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+
+        <li class="aa-card">
+          <div class="aa-top">
+            <span class="aa-n">11</span>
+            <span class="aa-badge b-ink">IN PROGRESS</span>
+          </div>
+          <h3>Griptonite monthly competitions</h3>
+          <p>Second box and second TV installed, summer league ran as a live test. Monthly format still to be written.</p>
+
+          <!-- PHOTO SLOT — item 11. Empty on purpose. The space is already
+               reserved, so a picture can be dropped in without touching the
+               layout:  <div class="aa-photo"><img src="…" alt="…"></div>  -->
+          <div class="aa-photo"></div>
+        </li>
+      </ol>
     </div>
   </section>
 
